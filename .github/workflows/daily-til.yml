@@ -2,7 +2,7 @@ name: daily-til
 
 on:
   schedule:
-    - cron: '20 6 * * *'  # 매일 오후 3시 20분 (KST)
+    - cron: '30 8 * * *'
   workflow_dispatch:
 
 permissions:
