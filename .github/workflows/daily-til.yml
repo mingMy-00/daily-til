@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write  # ← 추가 필요!
+  contents: write
 
 jobs:
   commit:
@@ -25,10 +25,12 @@ jobs:
         run: |
           today=$(date +'%Y-%m-%d')
           mkdir -p til
-          echo "- 오늘 배운 것 정리" > til/$today.md
-          git add .
-          git commit -m "TIL: $today 작성"
-
-      - name: Push changes
-        run: |
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main
+          file_path="til/$today.md"
+          if [ ! -f "$file_path" ]; then
+            echo "- 오늘 배운 것 정리" > "$file_path"
+            git add "$file_path"
+            git commit -m "TIL: $today 작성"
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main
+          else
+            echo "$file_path already exists. Skipping commit."
+          fi
