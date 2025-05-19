@@ -1,5 +1,6 @@
 name: Daily TIL Commit
-
+permissions:
+  contents: write
 on:
   schedule:
     - cron: '0 0 * * *'  # 매일 00:00 UTC = 오전 9시 KST
@@ -32,3 +33,5 @@ jobs:
           git push
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          
