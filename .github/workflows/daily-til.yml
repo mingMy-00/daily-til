@@ -14,8 +14,8 @@ jobs:
 
       - name: Set up Git
         run: |
-          git config --global user.name "밍데"
-          git config --global user.email "your-email@example.com"
+          git config --global user.name "mingMy-00"
+          git config --global user.email "wbsebqb1118@naver.com"
 
       - name: Create TIL file
         run: |
