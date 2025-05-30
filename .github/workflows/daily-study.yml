@@ -1,0 +1,157 @@
+name: daily-study
+
+on:
+  schedule:
+    # 더 다양한 시간대로 분산
+    - cron: '25 6 * * *'
+    - cron: '15 7 * * *'
+    - cron: '45 8 * * *' 
+    - cron: '20 9 * * *'
+    - cron: '35 10 * * *'
+    - cron: '50 11 * * *'
+    - cron: '10 13 * * *'
+    - cron: '30 14 * * *'
+    - cron: '40 16 * * *'
+    - cron: '55 18 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set git user
+        run: |
+          git config --global user.name "mingMy-00"
+          git config --global user.email "wbsebqb1118@naver.com"
+
+      - name: Create study activities
+        run: |
+          today=$(date +'%Y-%m-%d')
+          mkdir -p notes docs examples
+          
+          # 오늘 이미 활동했는지 체크
+          if [ -f "notes/$today.md" ] || [ -f "docs/$today.md" ] || [ -f "examples/$today.md" ]; then
+            echo "Already active today."
+            exit 0
+          fi
+          
+          # 다양한 활동 타입 (30% 확률로 여러 활동)
+          should_create_multiple=$((RANDOM % 10))
+          
+          # 활동 내용들
+          note_contents=(
+            "# React 개념 정리\n\n## useState Hook\n- 상태 관리를 위한 기본 Hook\n- 함수형 컴포넌트에서 상태 사용 가능\n\n## 예제\n\`\`\`javascript\nconst [count, setCount] = useState(0);\n\`\`\`"
+            "# JavaScript 비동기 처리\n\n## Promise\n- 비동기 작업의 결과를 나타내는 객체\n- then, catch 메서드로 처리\n\n## async/await\n- Promise를 더 직관적으로 사용\n- 동기 코드처럼 작성 가능"
+            "# CSS Flexbox 정리\n\n## 주요 속성\n- display: flex\n- justify-content: 주축 정렬\n- align-items: 교차축 정렬\n\n## 활용 예제\n반응형 레이아웃 구성에 유용"
+            "# 알고리즘 문제 해결\n\n## 오늘 푼 문제\n- 투 포인터 기법 활용\n- 시간복잡도 O(n)으로 최적화\n\n## 핵심 아이디어\n배열의 양끝에서 시작하여 조건에 따라 포인터 이동"
+            "# Git 브랜치 전략\n\n## Git Flow\n- main: 프로덕션 브랜치\n- develop: 개발 브랜치\n- feature: 기능 개발\n\n## 유용한 명령어\n\`git checkout -b feature/new-feature\`"
+            "# API 설계 원칙\n\n## RESTful API\n- 자원 중심의 URL 설계\n- HTTP 메서드 활용\n- 상태코드 적절히 사용\n\n## 예시\nGET /api/users/123\nPOST /api/users\nPUT /api/users/123"
+            "# 데이터베이스 최적화\n\n## 인덱스 활용\n- 조회 성능 향상\n- WHERE 절에 자주 사용되는 컬럼에 생성\n\n## 쿼리 최적화\n- 불필요한 SELECT * 지양\n- JOIN 조건 명확히 작성"
+          )
+          
+          doc_contents=(
+            "# 프로젝트 기획서\n\n## 목표\n개인 포트폴리오 웹사이트 제작\n\n## 기술 스택\n- Frontend: React, TypeScript\n- Styling: Tailwind CSS\n- Deployment: Vercel"
+            "# 코딩 컨벤션\n\n## JavaScript\n- camelCase 사용\n- const > let > var\n- 함수형 프로그래밍 지향\n\n## CSS\n- BEM 방법론 적용\n- 모바일 퍼스트 접근"
+            "# 학습 로드맵\n\n## 단기 목표 (1개월)\n- React Hook 마스터\n- TypeScript 기초 완성\n\n## 중기 목표 (3개월)\n- Next.js 프로젝트 완성\n- 포트폴리오 사이트 배포"
+          )
+          
+          example_contents=(
+            "# React Hook 예제\n\n\`\`\`javascript\nimport { useState, useEffect } from 'react';\n\nfunction Timer() {\n  const [count, setCount] = useState(0);\n  \n  useEffect(() => {\n    const timer = setInterval(() => {\n      setCount(c => c + 1);\n    }, 1000);\n    \n    return () => clearInterval(timer);\n  }, []);\n  \n  return <div>Count: {count}</div>;\n}\n\`\`\`"
+            "# API 호출 예제\n\n\`\`\`javascript\nasync function fetchUser(id) {\n  try {\n    const response = await fetch(\`/api/users/\${id}\`);\n    const user = await response.json();\n    return user;\n  } catch (error) {\n    console.error('Failed to fetch user:', error);\n    throw error;\n  }\n}\n\`\`\`"
+            "# CSS Grid 레이아웃\n\n\`\`\`css\n.container {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));\n  gap: 20px;\n  padding: 20px;\n}\n\n.item {\n  background: #f0f0f0;\n  padding: 15px;\n  border-radius: 8px;\n}\n\`\`\`"
+          )
+          
+          commit_messages=(
+            "docs: 학습 내용 정리 및 업데이트"
+            "study: 새로운 개념 학습 기록"
+            "notes: 개발 관련 메모 추가"
+            "docs: 기술 스택 문서화"
+            "update: 프로젝트 진행상황 기록"
+            "memo: 코딩 팁 및 베스트 프랙티스"
+            "docs: 개발 환경 설정 가이드"
+            "study: 알고리즘 문제 해결 과정"
+            "notes: 아이디어 및 개선사항 기록"
+            "update: 학습 진도 및 계획 수정"
+            "refactor: 코드 예제 개선"
+            "feat: 새로운 예제 코드 추가"
+            "fix: 문서 오타 및 내용 수정"
+            "chore: 파일 구조 정리"
+          )
+          
+          # 활동 생성
+          activity_type=$((RANDOM % 3))
+          content_index=$((RANDOM % 7))
+          message_index=$((RANDOM % ${#commit_messages[@]}))
+          
+          case $activity_type in
+            0)
+              # Notes 활동
+              file_path="notes/$today.md"
+              echo -e "${note_contents[$content_index]}" > "$file_path"
+              ;;
+            1)
+              # Docs 활동  
+              file_path="docs/$today.md"
+              doc_index=$((RANDOM % ${#doc_contents[@]}))
+              echo -e "${doc_contents[$doc_index]}" > "$file_path"
+              ;;
+            2)
+              # Examples 활동
+              file_path="examples/$today.md"
+              example_index=$((RANDOM % ${#example_contents[@]}))
+              echo -e "${example_contents[$example_index]}" > "$file_path"
+              ;;
+          esac
+          
+          git add "$file_path"
+          
+          # 30% 확률로 여러 활동 수행
+          if [ $should_create_multiple -lt 3 ]; then
+            # 추가 파일 생성
+            second_activity=$((RANDOM % 3))
+            second_content=$((RANDOM % 7))
+            
+            case $second_activity in
+              0)
+                if [ ! -f "notes/$today-extra.md" ]; then
+                  echo -e "${note_contents[$second_content]}" > "notes/$today-extra.md"
+                  git add "notes/$today-extra.md"
+                fi
+                ;;
+              1)
+                if [ ! -f "docs/$today-planning.md" ]; then
+                  planning_index=$((RANDOM % ${#doc_contents[@]}))
+                  echo -e "${doc_contents[$planning_index]}" > "docs/$today-planning.md"
+                  git add "docs/$today-planning.md"
+                fi
+                ;;
+              2)
+                if [ ! -f "examples/$today-code.md" ]; then
+                  code_index=$((RANDOM % ${#example_contents[@]}))
+                  echo -e "${example_contents[$code_index]}" > "examples/$today-code.md"
+                  git add "examples/$today-code.md"
+                fi
+                ;;
+            esac
+          fi
+          
+          # 10% 확률로 README 업데이트
+          if [ $((RANDOM % 10)) -eq 0 ]; then
+            echo -e "# 개발 학습 노트\n\n개발 공부하면서 배운 것들을 기록하는 개인 저장소입니다.\n\n## 📚 학습 내용\n- 웹 개발 (HTML, CSS, JavaScript)\n- React, Node.js\n- 알고리즘 & 자료구조\n- 데이터베이스\n- Git & GitHub\n\n## 📝 기록 방식\n- 매일 학습한 내용을 간단히 정리\n- 코드 예제와 함께 메모\n- 프로젝트 아이디어 기록\n\n마지막 업데이트: $(date +'%Y-%m-%d')" > README.md
+            git add README.md
+          fi
+          
+          # 가끔 빈 커밋도 생성 (5% 확률)
+          if [ $((RANDOM % 20)) -eq 0 ]; then
+            git commit --allow-empty -m "chore: 개발 환경 점검"
+          fi
+          
+          git commit -m "${commit_messages[$message_index]}"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main 
