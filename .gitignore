@@ -1,0 +1,10 @@
+# GitHub Actions 워크플로우 파일들 제외
+.github/workflows/*.yml
+
+# 설정 파일들
+study-config.json
+
+# 기타 임시 파일들
+*.tmp
+*.log
+.DS_Store 
