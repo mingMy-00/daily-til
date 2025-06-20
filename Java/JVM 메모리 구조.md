@@ -88,8 +88,7 @@ Class Loader ↔ Execution Engine ↔ Runtime Data Area
     - 컴파일타임이 아닌 *런타임에 클래스 파일을 참조*
 
     
-![클래스로더 사진.png](/Java/img/JVM(2).png)
-    =>김인엽님이 그림
+![클래스로더 사진.png](/Java/img/JVM/JVM(2).png)
     
     ✅ class loader 종류
     
