@@ -37,7 +37,7 @@
 
 </aside>
 
-![스크린샷 2024-06-26 오후 8.08.04.png](/Java/img/JVM(7).png)
+![스크린샷 2024-06-26 오후 8.08.04.png](/Java/img/JVM/JVM(7).png)
 
 위의 이 그림은 자바 애플리케이션의 구동원리를 간략하게 그린 것인데, 
 JVM의 실행 부분은 빨간 박스 부분인, 
@@ -49,7 +49,7 @@ JVM의 실행 부분은 빨간 박스 부분인,
 <aside>
 💡 JVM의 역할은 : 자바 애플리케이션을 클래스 로더를 통해 읽어 자바 API와 함께 실행하는 것!
 
-![스크린샷 2024-06-26 오후 8.13.14.png](/Java/img/JVM(3).png)
+![스크린샷 2024-06-26 오후 8.13.14.png](/Java/img/JVM/JVM(3).png)
 
 
 자바 프로그램을 실행하면 
@@ -72,7 +72,7 @@ JVM의 실행 부분은 빨간 박스 부분인,
 Class Loader ↔ Execution Engine ↔ Runtime Data Area 
 부분을 좀더 상세화 한 도식입니담.
 
-![스크린샷 2024-06-25 오후 11.41.29.png](/Java/img/JVM(8).png)
+![스크린샷 2024-06-25 오후 11.41.29.png](/Java/img/JVM/JVM(8).png)
 
 ⇒ 이처럼 구성은 클래스 로더 => 실행엔진 => 런타임영역 입니당. 
 
@@ -123,7 +123,7 @@ Class Loader ↔ Execution Engine ↔ Runtime Data Area
     > 
 <br>
 
-![이미지 2024. 6. 26. 오후 11.39.jpeg](/Java/img/JVM(1).jpeg)
+![이미지 2024. 6. 26. 오후 11.39.jpeg](/Java/img/JVM/JVM(1).jpeg)
     
     ✅ 클래스 로드의 단계 
         
@@ -199,7 +199,7 @@ Class Loader ↔ Execution Engine ↔ Runtime Data Area
              간단하게 **JVM의 메모리영역**.
              : 자바 애플리케이션을 실행할 때 사용되는 데이터들을 적재하는 영역 
     
-    ![스크린샷 2024-06-25 오후 11.42.50.png](/Java/img/JVM(4).png)
+    ![스크린샷 2024-06-25 오후 11.42.50.png](/Java/img/JVM/JVM(4).png)
     
     <aside>
     💡 이 구간은 크게 5가지로 나뉜다.
@@ -271,7 +271,7 @@ Class Loader ↔ Execution Engine ↔ Runtime Data Area
         ✅ Heap영역 어떻게 나뉘는데 ?
            ⇒ 아래의 3부분 ( Young, Old, Permanent영역)으로 나뉜다. 
 
-![스크린샷 2024-06-26 오전 12.11.21.png](/Java/img/JVM(5).png)
+![스크린샷 2024-06-26 오전 12.11.21.png](/Java/img/JVM/JVM(5).png)
 
 이에 대한 얘기는 - [GC란?](/Java/GC란.md) => 에 있습니당. 
 여기는 간단하게 할게요.
@@ -311,7 +311,7 @@ Class Loader ↔ Execution Engine ↔ Runtime Data Area
             StackOverFlowError가 발생. 
         ⇒쓰레드를 종료하면 런타임 스택도 사라짐.
             
-![스크린샷 2024-06-26 오전 12.20.40.png](/Java/img/JVM(6).png)
+![스크린샷 2024-06-26 오전 12.20.40.png](/Java/img/JVM/JVM(6).png)
         
         
 ## 4️⃣ PC Register
