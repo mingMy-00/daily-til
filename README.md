@@ -18,4 +18,7 @@ Java 관련 핵심 개념들을 정리한 문서입니다.
 
 - [JVM Memory Structure](/Java/JVM%20메모리%20구조.md) <br>
   → JVM이 실행 시 사용하는 메모리 영역 (Heap, Stack, Method Area 등)의 역할과 구조 설명
+
+- [ArrayList grows automatically](/Java/ArrayList%20자동%20확장.md) <br>
+ → JVM이 실행 시 사용하는 메모리 영역 (Heap, Stack, Method Area 등)의 역할과 구조 설명
 ---
