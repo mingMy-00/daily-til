@@ -175,11 +175,7 @@ set.add(1);
 set.add(5);
 ```
 <br>
-⇒ 다음과 같이값을 넣으면 내부적으로 
-
-![스크린샷 2024-07-17 오전 12.47.11.png](/Java/img/Collection/set2.png)
-
-⇒ 이렇게 값이 추가되는 순서대로 정렬이 된다. 
+⇒ 다음과 같이값을 넣으면 내부적으로 이렇게 값이 추가되는 순서대로 정렬이 된다. 
 
 💡 이진 검색 트리 자료구조 
 
@@ -272,7 +268,7 @@ set.add(5);
 - 과거에 대용량 처리를 위해 사용되었으며, 내부에서 자동으로 `동기화처리가 일어나 비교적 성능이 좋지 않고` 무거워 잘 안쓰임
 - 구버전 자바와 호환성을 위해 남겨두어 잘 쓰이지는 않음.
 
-![Untitled](/Java/img/Untitled.png)
+![Untitled](/Java/img/Collection/Untitled.png)
 
 ⇒ 내부적으로 다 동기화 처리됨. 
 
@@ -305,7 +301,7 @@ set.add(5);
 
 ✅ Vector를 상속하기 때문에 잘 안씀 (대신 ArrayDeque사용 ⇒ Queue 할 때 나옴)
 
-![Untitled](/Java/img/Untitled%201.png)
+![Untitled](/Java/img/Collection/Untitled%201.png)
 
 ## 3) Map 인터페이스
 
