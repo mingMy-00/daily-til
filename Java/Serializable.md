@@ -1,6 +1,48 @@
 # 직렬화와 역직렬화
 
-**직렬화(Serialization)** 란 객체를 바이트 스트림형태로 연속적인(Serial) 데이터로 변환하는 포맷 변환기술을 말한다. 
+#글을 쓰기 전에 직렬화와 역직렬화를 사용하는 이유에 대해서 쓰겠다. 
+
+```
+ 자바 객체는 메모리(RAM)에만 존재하는데
+ 이걸 외부로 내보내거나 저장하려면, 사람이든 시스템이든 이해 가능한 형식으로 변환해야 한다.
+ 이걸 "직렬화(Serialization)"라고 부른다.
+
+ 데이터를 DB나 파일에 저장할 때	        객체 → 저장 가능한 포맷으로 변환
+ 네트워크로 데이터를 보낼 때 (API 요청/응답)	객체 → 문자열/바이트 전환
+ 분산 시스템에서 객체 공유 (세션, 캐시 등)	객체 → 전송 가능한 형식으로 직렬화
+```
+
+JSON도 안 쓰고, Serializable도 안 쓰면 어떻게 되냐?
+그냥 객체는 절대로: 
+
+```	
+ 1. API 응답으로 보낼 수 없음
+ 2. 파일로 저장도 안 됨
+ 3. 네트워크로도 못 보냄
+ 4. 캐시에 저장도 안 됨
+```
+
+``` java
+ public class User {
+    String name;
+    int age;
+}
+
+@GetMapping("/user")
+public User getUser() {
+    return new User("밍데", 30);
+}
+
+```
+
+=>
+Spring이 자동으로 JSON으로 바꿔주니까 몰랐던 거지, 만약 JSON 라이브러리(Jackson 등)를 제거하면 → 에러가 발생한다. <br>
+즉, 어떤 방식으로든 객체는 `직렬화`되어야 한다 <br>
+→ 그게 JSON이든, Serializable이든, 뭔가는 반드시 있어야 한다 !! 
+
+<br><br>
+
+**직렬화(Serialization)** 란 객체를 바이트 스트림형태로 연속적인(Serial) 데이터로 변환하는 포맷 변환기술을 말한다. <br>
 **역직렬화(deserialization)** 는 반대로 바이트 스트림에서 객체로 복원하는 과정이다.
 
 JVM Heap 영역이나 Stack 영역에 있는 객체 데이터를 직렬화를 통해 바이트 형태로 변환하여 데이터베이스나 파일로 변환해 외부에 저장해두고, 다른 컴퓨터에서 이 파일을 가져와 역직렬화를 통해 자바 객체로 변환해서 JVM 메모리에 적재하는것이다.
@@ -37,7 +79,7 @@ JVM Heap 영역이나 Stack 영역에 있는 객체 데이터를 직렬화를 �
 ```java
 public class User implements Serializable {
 
-	private String name;
+  private String name;
   private int age;
 }
 ```
@@ -66,8 +108,9 @@ public class SerializationExample {
 
 - `FileOutputStream` : **파일에 데이터를 바이트 단위로 쓰는** 역할
 - `ObjectOutputStream` : **객체를 바이트 스트림으로 직렬화**하는 역할
-- `writeObject()` : `user` 객체를 바이트로 변환(직렬화)하고, 이를 `FileOutputStream`을 통해 지정된 파일
-
+- `writeObject()` : `user` 객체를 바이트로 변환(직렬화)하고, 이를 `FileOutputStream`을 통해 지정된 파일에 저장 
+- 참고로 user.ser의 파일 같은 경우에는 실제 존재하는 파일이 아니라, 내가 저장할 파일 이름을 지정하는 것이다. !!
+  
 <br>
 
 반대로 역직렬화는 `ObjectInputStream`을 사용한다.
@@ -119,7 +162,7 @@ public class User implements Serializable {
 
 `serialVersionUID`는 직렬화된 객체가 저장된 상태와, 역직렬화 시점의 클래스가 **같은 버전**인지 확인하는 데 사용된다.  직렬화 시점과 역직렬화 시점에서 클래스의 `serialVersionUID`가 일치해야만 객체가 정상적으로 역직렬화될 수 있다.
 
-만약 클래스에 `serialVersionUID`를 명시하지 않으면, 컴파일러가 **자동으로** 생성한다. 하지만 클래스가 변경될 때마다 `serialVersionUID`가 새로 생성되기 때문에 **환되지 않는 문제**가 발생할 수 있다.
+만약 클래스에 `serialVersionUID`를 명시하지 않으면, 컴파일러가 **자동으로** 생성한다. 하지만 클래스가 변경될 때마다 `serialVersionUID`가 새로 생성되기 때문에 **변환되지 않는 문제**가 발생할 수 있다.
 
 그래서 수동으로 설정하는 것이 일반적이다.
 
