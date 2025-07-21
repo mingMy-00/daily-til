@@ -164,7 +164,7 @@ public class User implements Serializable {
 
 만약 클래스에 `serialVersionUID`를 명시하지 않으면, 컴파일러가 **자동으로** 생성한다. 하지만 클래스가 변경될 때마다 `serialVersionUID`가 새로 생성되기 때문에 **변환되지 않는 문제**가 발생할 수 있다.
 
-그래서 수동으로 설정하는 것이 일반적이다.
+그래서 `수동으로 설정하는 것이 일반적`이다.
 
 <br><br>
 
