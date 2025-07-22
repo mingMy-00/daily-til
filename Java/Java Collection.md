@@ -377,7 +377,7 @@ Queue는 인터페이스를 구현한 class 로는 `PriorityQueue, ArrayDeque` �
 ArrayList와 같은 배열 기반의 컬렉션 클래스를 사용한다면, 
 
 데이터를 꺼낼 때마다 빈 공간을 채우기 위해 데이터의 이동 & 복사가 발생하여 비효율적임. 
-따라서, ArrayList보다는 LinkedList로 구현한당. 
+따라서, ArrayList보다는 `LinkedList`로 구현한당. 
 
 </aside>
 <br><br>
