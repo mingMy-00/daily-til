@@ -14,6 +14,7 @@ Java 관련 핵심 개념들을 정리한 문서입니다. 추후 CS까지 확�
 - [Java에서 불변객체란? (final)](/Java/Java에서%20불변클래스와%20불변객체%20(final).md)
 - [Java 컴파일 과정](/Java/Java%20컴파일%20과정.md)
 - [Serializable](/Java/Serializable.md)
+- [Generic이란?](/Java/Generic이란.md)
 
 ## DataStructure
 - [Collection(Queue, Set, List, Map, Stack)](Java/Java%20Collection.md)
