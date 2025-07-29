@@ -204,7 +204,7 @@ FruitBox 클래스에는 모든 타입이 들어올 수 있다.
 
 **상한 경계**
 
-![Untitled](/Java/img/Generic(1).png)
+![Untitled](/Java/img/Generic/Generic(1).png)
 
 ```java
 T extends Fruit
@@ -232,7 +232,7 @@ public class FruitBox<T extends Fruit> {
 이렇게 특정 클래스나 하위클래스만 들어올수있게 제한하여 클래스를 설게할때 사용된다.
 반대로 하한 경계선도 있다.
 
-![Untitled](/Java/img/Generic(2).png)
+![Untitled](/Java/img/Generic/Generic(2).png)
 
 ```java
 T super Fruit
@@ -314,7 +314,7 @@ List<Number> list = new ArrayList<Object>(); // Error
 List<Number> list = new ArrayList<Number>(); // Ok.
 ```
 
-![Untitled](/Java/img/Generic(3).png)
+![Untitled](/Java/img/Generic/Generic(3).png)
 
 제네릭의 타입 파라미터 간이 상속 관계를 가져도 제네릭 자체는 상속관계를 허용해주지않는다.
 
