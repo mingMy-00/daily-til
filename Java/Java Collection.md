@@ -23,14 +23,9 @@
       - HashTable
       - HashMap
       - TreeMap
-<br><br>
-+ 추가로 힙 정렬 + 이진트리 정렬 
 <br>
 <br>
-드디어…. 자바 컬렉션 ㅠㅠ 흑 <br>
-사실 실무에서 자료구조 하나 제대로 알지도 못하면서 <br>
-값 담는거 같아 공부하고 싶었다. 이건
-<br><br>
+
 
 # 1️⃣ Java 에서 Collection이란 무엇인가.
 
