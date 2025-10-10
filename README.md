@@ -16,7 +16,7 @@ Java 관련 핵심 개념들을 정리한 문서입니다.
 - [Serializable](/Java/Serializable.md)
 - [Generic이란?](/Java/Generic이란.md)
 - [Java의 passByValue vs passByReference](/Java/Java에서%20Pass%20by%20Value%20vs%20Pass%20by%20Reference,%20제대로%20이해하기.md)
-- [Java 컴파일 과정](/Java/Java에%20존재하는%204가지%20변수.md)
+- [Java에 존재하는 4가지 변수](/Java/Java에%20존재하는%204가지%20변수.md)
 
 ## DataStructure
 - [Collection(Queue, Set, List, Map, Stack)](Java/Java%20Collection.md)
